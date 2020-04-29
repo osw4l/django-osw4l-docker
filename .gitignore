@@ -1,0 +1,15 @@
+/.idea
+db.sqlite3
+__pycache__/
+*.pyc
+*.pyo
+celerybeat-schedule.db
+celerybeat.pid
+/.vscode
+/env
+/venv
+.DS_Store
+.env
+/static
+/staticfiles
+/app
