@@ -88,8 +88,11 @@ first, we need to setup the common stuff to active the autocomplete adding the D
 now we need add the python interpreter what live inside the docker container to the project
 
 Go to preferences and to click in Interpreter then in Project Interpreter and press add
+
 ![enter image description here](https://i.imgur.com/DwKsssx.png)
+
 now, do click in Docker, select the image what contains the project name, then write python3 and press ok
+
 ![enter image description here](https://i.imgur.com/pI86DZb.png)
 
 press apply and ok, done!.
