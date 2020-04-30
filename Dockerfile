@@ -26,7 +26,6 @@ RUN export LC_ALL=es_ES.UTF-8
 # Crear usuario sin privilegios
 RUN adduser --disabled-password --gecos '' app
 RUN chown -R app:app /app && chmod -R 755 /app
-RUN chown -R app:app /usr/local/lib/python3.6/ && chmod -R 755 /usr/local/lib/python3.6/
 
 ENV HOME /home/app
 USER app
