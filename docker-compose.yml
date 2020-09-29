@@ -1,4 +1,14 @@
-version: '3'
+version: '2'
+
+networks:
+  webnet:
+  redisnet:
+  db_network:
+
+volumes:
+  postgres_data:
+  dbbackups:
+  redisdata:
 
 services:
   backend:
@@ -42,23 +52,21 @@ services:
       - redisdata:/data
     networks:
       - redisnet
-    ports:
-      - '6379:6379'
     command: redis-server
 
   database:
     image: kartoza/postgis:12.0
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+      - dbbackups:/backups
     env_file: .env
     expose:
-      - '5432'
+      - '5433'
     ports:
       - '5433:5432'
     restart: on-failure
     networks:
-      db_network:
-
+      - db_network
   nginx:
     image: nginx:1.15.0
     depends_on:
@@ -67,11 +75,10 @@ services:
     volumes:
       - ./nginx:/etc/nginx/conf.d
       - ./static:/app/static
-      - ./app:/app
     networks:
       - webnet
     ports:
-      - '3002:80'
+      - '4000:80'
 
   worker:
     build: .
@@ -100,12 +107,3 @@ services:
     networks:
       - redisnet
       - db_network
-
-networks:
-  webnet:
-  redisnet:
-  db_network:
-
-volumes:
-  postgres_data:
-  redisdata:
